@@ -81,12 +81,17 @@ int main(void)
 		}
 		draw_board();
 		game_message(gameover, game_logic);
-		if (draw)
+		//player turn
+		if (draw && turn == 0)
 		{
 
 			set_graphics_x_o(posX, posY, game_logic, turn);
 
 			draw = false;
+		}
+		//computer turn
+		if (turn == 1 && !gameover) {
+
 		}
 		al_flip_display();
 	}
