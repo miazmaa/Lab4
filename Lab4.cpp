@@ -58,7 +58,6 @@ int main(void)
 
 	game_logic.setup();
 	draw_board();
-	//game_message(gameover, game_logic);
 
 	al_flip_display();
 	while (!done && !gameover)
@@ -80,7 +79,6 @@ int main(void)
 			}
 		}
 		draw_board();
-		game_message(gameover, game_logic);
 		//player turn
 		if (draw && turn == 0)
 		{
@@ -91,8 +89,12 @@ int main(void)
 		}
 		//computer turn
 		if (turn == 1 && !gameover) {
+			posX = rand() % width;
+			posY = rand() % height;
+			set_graphics_x_o(posX, posY, game_logic, turn);
 
 		}
+		game_message(gameover, game_logic);
 		al_flip_display();
 	}
 	al_rest(5.0);
