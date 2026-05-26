@@ -87,13 +87,22 @@ int main(void)
 
 			draw = false;
 		}
+		game_message(gameover, game_logic); //moved after player turn to check board state before AI goes
+		if (gameover) {
+			al_flip_display(); //prevents freeze if board is full to stop ties from crashing program
+			break;
+		}
 		//computer turn
 		if (turn == 1 && !gameover) {
-			posX = rand() % width;
-			posY = rand() % height;
-			set_graphics_x_o(posX, posY, game_logic, turn);
+			int attempts = 0;
+
+			while (turn == 1 && attempts < 100) {
+				posX = rand() % width;
+				posY = rand() % 375;
+				set_graphics_x_o(posX, posY, game_logic, turn);
+				attempts++;
+			}
 		}
-		game_message(gameover, game_logic);
 		al_flip_display();
 	}
 	al_rest(5.0);
