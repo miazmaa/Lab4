@@ -3,6 +3,7 @@
 #include <allegro5\allegro_ttf.h>
 #include <allegro5\allegro_primitives.h>	
 #include <allegro5\allegro_native_dialog.h> 
+#include <ctime>
 #include "logic.h"
 
 
@@ -15,6 +16,7 @@ void turn_xo(int x, int y, int& turn, int boardx, int boardy, logic& game_logic)
 
 int main(void)
 {
+	srand(time(NULL));
 	logic  game_logic;
 	int posX = 0, posY = 0;
 	bool gameover = false;
@@ -96,7 +98,7 @@ int main(void)
 		if (turn == 1 && !gameover) {
 			int attempts = 0;
 
-			while (turn == 1 && attempts < 100) {
+			while (turn == 1 && attempts < 100) { //attempts is intended to prevent an infinite loop if AI is stuck
 				posX = rand() % width;
 				posY = rand() % 375;
 				set_graphics_x_o(posX, posY, game_logic, turn);
