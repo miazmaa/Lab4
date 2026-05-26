@@ -92,7 +92,6 @@ int main(void)
 			posX = rand() % width;
 			posY = rand() % height;
 			set_graphics_x_o(posX, posY, game_logic, turn);
-
 		}
 		game_message(gameover, game_logic);
 		al_flip_display();
